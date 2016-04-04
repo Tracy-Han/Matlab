@@ -10,6 +10,8 @@ charIndex = 1;Duration = [50,70,50,45,40,40,75,65];
 %% Setting Parameters
 aniFolder = [ModelFolder,'\Animation'];
 charFolder = [ModelFolder,'\Character'];
+charFolder_slash = 'D:/TriangleOrdering/Models/Character';
+aniFolder_slash = 'D:/TriangleOrdering/Models/Animation';
 oldFolder = cd(aniFolder);
 Animation = {};
 file = dir('*.fbx');
@@ -45,17 +47,17 @@ for y=1:length(Animation)
         duration = Duration(y);
         % new scene
         fprintf(fileId,'%s \n','file -f - new ;');
-%         % import model
-%         temp = ['file -import -type "DAE_FBX" -ignoreVersion -ra true'...
-%             '-mergeNamespacesOnClash false -namespace '];
-%         inpath = [charFolder2,'/',Character{charIndex},'.dae'];
-%         readChar = [temp,'"',Character{charIndex},'" -options "dae"  -pr ','"',inpath,'";'];
-%         fprintf(fileId,'%s \n',readChar);
-%         temp2 = ['file -import -type "FBX" -ignoreVersion -ra true'...
-%             '-mergeNamespacesOnClash false -namespace '];
-%         inpath2 = [aniFolder2,'/',Animation{y},'.fbx'];
-%         readAni = [temp2,'"',Animation{y},'" -options "fbx"  -pr ','"',inpath2,'"'];
-%         fprintf(fileId,'%s \n',readAni);
+        % import model
+        temp = ['file -import -type "DAE_FBX" -ignoreVersion -ra true'...
+            '-mergeNamespacesOnClash false -namespace '];
+        inpath = [charFolder_slash,'/',Character{charIndex},'.dae'];
+        readChar = [temp,'"',Character{charIndex},'" -options "dae"  -pr ','"',inpath,'";'];
+        fprintf(fileId,'%s \n',readChar);
+        temp2 = ['file -import -type "FBX" -ignoreVersion -ra true'...
+            '-mergeNamespacesOnClash false -namespace '];
+        inpath2 = [aniFolder_slash,'/',Animation{y},'.fbx'];
+        readAni = [temp2,'"',Animation{y},'" -options "fbx"  -pr ','"',inpath2,'"'];
+        fprintf(fileId,'%s \n',readAni);
 %         % select mesh
 %         selectMesh = ['select -r ',select,' ;'];
 %         fprintf(fileId,'%s \n',selectMesh);
